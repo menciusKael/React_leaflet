@@ -1,0 +1,12 @@
+diff a/webpack.config.js b/webpack.config.js	(rejected hunks)
+@@ -274,10 +274,6 @@
+     // 浏览器全屏显示编译器错误信息
+       overlay: true,
+     // 公共文件，浏览器可直接访问，HMR必须
+-      publicPath: '/',
+-      proxy: {
+-        '/': 'http://192.168.19.50:8080'
+-      }
+       publicPath: '/'
+     }
+   }
