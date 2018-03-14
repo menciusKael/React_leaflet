@@ -1,0 +1,4 @@
+node_modules/
+dist/
+dll/
+配置不需要加入版本管理的文件
