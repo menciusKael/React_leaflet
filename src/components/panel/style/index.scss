@@ -1,0 +1,104 @@
+$prefix:'md-panel';
+.#{$prefix} {
+    background-color: #fff;
+    min-width: 200px;
+    border-radius: 3px;
+    position: absolute;
+    left:0;top:0;
+    box-shadow: 0 0 6px rgba(0, 33, 50, 0.1), 0 7px 25px rgba(17, 38, 60, 0.4);
+    .#{$prefix}--control {
+        height: 30px;
+        background-color: #E5E9F2;
+        overflow: hidden;
+        .title {
+            display: inline-block;
+            padding: 0 10px;
+            line-height: 30px;
+            font-size: 15px;
+        }
+        .icon--right {
+            display: inline-block;
+            line-height: 24px;
+            font-size: 17px;
+            padding: 0 5px;
+            margin: 3 0;
+            float: right;
+            cursor: pointer;
+        }
+        .icon--right__close {
+            
+        }
+        .icon--right__close:hover,
+        .icon--right__caret-up:hover,
+        .icon--right__caret-down:hover,
+        .icon--right__expand_true:hover,
+        .icon--right__expand_false:hover {
+            background-color: #d6d9e0;
+        }
+        .icon--right__caret-up,.icon--right__caret-down{
+            font-size: 15px;            
+        }
+        .icon--right__caret-down {
+            margin-top: 2px;
+        }
+        .icon--right__caret-up {
+            margin-top: 5px;
+        }
+        .icon-div--right {
+           
+        }
+        .icon--right__expand_true,.icon--right__expand_false{
+             width: 24px;
+            height: 24px;
+            line-height: 24px;    
+        }
+        .icon--right__expand_true {
+            &::before,&::after{
+                content: '';
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border: 2px solid #333232;
+                box-sizing: border-box;
+            }
+            &::before {
+                margin-top: 5px;
+                margin-left: 3px;
+            }
+            &::after{
+                margin-top: -7px;
+                background-color: #e5e9f2;
+            }
+        }
+        .icon--right__expand_false{
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 13px;
+                height: 13px;
+                border: 2px solid #333232;
+                box-sizing: border-box;
+                margin-top: 5px;
+            }
+        }
+    }
+    .#{$prefix}--control{
+       
+    }
+    & .#{$prefix}--body {
+        min-height: 30px;
+        padding: 5px;
+        
+    }
+    .hasMini__hidden_true{
+        display: none;
+    }
+    .md-panel--mini{
+        position: absolute;
+        float: left
+    }
+    .md-panel__move:hover{
+         cursor: move
+    }
+}
+
