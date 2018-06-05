@@ -7,7 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
  
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 80
-//const allowedHosts = ['192.168.23.3']
+//修改allowedHosts
 const allowedHosts = ['192.168.100.107']
 
 const sourcePath = path.join(__dirname, './site')
@@ -28,27 +28,24 @@ const stats = {
   }
 }
 /**
- * webpack config   webpack配置
+ * webpack config
  */
 module.exports = function (env) {
   const nodeEnv = env && env.production ? 'production' : 'development'
   const isProd = nodeEnv === 'production'
   /**
-   * Mete Design Webpack V3.1 Buiding Informations
+   * Webpack V3.1 Buiding Informations
    */
-  console.log('--------------Mete Design Webpack V3.1--------------')
   console.log('enviroment:' + nodeEnv)
   console.log('host:' + host)
   console.log('port:' + port)
   console.log('dist path:' + distPath)
   console.log('platform:' + env.platform)
-  console.log('-----------------Mete Design Group------------------')
   /**
-   * common plugin  公共插件
+   * common plugin
    */
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
-      // vendor chunk
       name: 'vendor' // the name of bundle
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -91,7 +88,7 @@ module.exports = function (env) {
   ]
   if (isProd) {
     /**
-     * production envrioment plugin  生产环境插件
+     * production envrioment plugin
      */
     plugins.push(
       new webpack.optimize.ModuleConcatenationPlugin(),
@@ -124,16 +121,7 @@ module.exports = function (env) {
       new webpack.NamedModulesPlugin(),
       // don't spit out any errors in compiled assets
       new webpack.NoEmitOnErrorsPlugin()
-      // load DLL files
-      // new webpack.DllReferencePlugin({context: __dirname, manifest: require('./dll/react_manifest.json')}),
-      // new webpack.DllReferencePlugin({context: __dirname, manifest: require('./dll/react_dom_manifest.json')}),
-      // new webpack.DllReferencePlugin({context: __dirname, manifest: require('./dll/react_router_dom_manifest.json')}),
-      // // make DLL assets available for the app to download
-      // new AddAssetHtmlPlugin([
-      //   { filepath: require.resolve('./dll/react.dll.js') },
-      //   { filepath: require.resolve('./dll/react_dom.dll.js') },
-      //   { filepath: require.resolve('./dll/react_router_dom.dll.js') }
-      // ])
+     
     )
   }
 
@@ -141,7 +129,7 @@ module.exports = function (env) {
     devtool: isProd ? 'source-map' : 'cheap-module-source-map',
     entry: {
       main: ['babel-polyfill', path.join(sourcePath, 'index.js')],
-      // static lib 静态资源库
+      // static lib
       vendor: ['react', 'react-dom', 'react-router-dom']
     },
     output: {
@@ -249,24 +237,16 @@ module.exports = function (env) {
     stats,
     // webpack dev server
     devServer: {
-    // 文件路劲，一般静态文件需要
       contentBase: path.join(__dirname, 'src'),
-    // 是否启用gzip压缩
       compress: true,
-    // 是否启用热替换
       hot: true,
       port,
-    // 开启任意ip访问
       host,
-    // 允许列表中host访问
       allowedHosts,
     // 取消host列表安全检查，开发环境启用，默认关闭，开启则allowedHosts无效
     // disableHostCheck: true,
-    // 关闭webpack重启打包信息，错误和警告仍然会显示
       noInfo: true,
-    // 浏览器全屏显示编译器错误信息
       overlay: true,
-    // 公共文件，浏览器可直接访问，HMR必须
       publicPath: '/',
       proxy: {
         '/': 'http://192.168.11.61:8081/'
