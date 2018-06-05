@@ -1,9 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-// import Promise from 'es6-promise'
-// Promise.polyfill()
-// import Button from '../src/components/button'
-// import MapContaniner from '../src/components/map'
 import {
   HashRouter as Router,
   Route,
@@ -41,7 +37,7 @@ class App extends React.Component {
           <div className='banner bgBlue500'>
             <h1 className='header-left'>
               <Link className='header--img' to=''>
-                <span style={{fontWeight: 'normal'}}>台风预警系统DEMO（POWER BY METE DESIGN）</span>
+                <span style={{fontWeight: 'normal'}}>台风预警系统</span>
               </Link>
             </h1>
             <button className='heder--menu' >
