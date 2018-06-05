@@ -11,7 +11,6 @@ import {
   getOffsetTop
 } from "../../../utils/dom/domFns";
 
-//引入Ant-Design相关组件
 import { Select, Button, Table, Tag, Checkbox, message, Icon } from "antd";
 
 import {
@@ -30,14 +29,14 @@ import "./index.scss";
 const position = [15.3, 134.6];
 // 请修改此处IP地址和webpack.config.js文件中allowedHosts的值，两者保持一致，都为本机IP，
 // 确保局域网中可以使用，host，port，ctx仅开发环境下使用，生产环境请酌情修改。
-//const host = 'http://192.168.23.3'
-const host = "http://192.168.100.107"; //域名
-const port = "80"; //端口
-const ctx = host + ":" + port; //域名+端口=url
+
+const host = "http://192.168.100.107"; 
+const port = "80"; 
+const ctx = host + ":" + port; 
 let lastTime;
 
 /**
- * @param    类型    参数名   描述
+ * @param   
  * @param  {String} data  风圈数据
  */
 //格式化风圈数据
@@ -82,19 +81,18 @@ export default class Home extends React.Component {
     this.handleTimeLineClick = this.handleTimeLineClick.bind(this);
     this.clearTimeBlank = this.clearTimeBlank.bind(this);
     this.deleteLayersForTimeLine = this.deleteLayersForTimeLine.bind(this);
-    this.hasSearchTyphoonData = {}; // 保存已查询的数据
-    this.currentId = null; // 当前选择的台风编号
-    this.featureLayers = {}; // 真实台风路径
-    this.forecastLayers = {}; // 预报台风路径
-    this.timeId = {}; // 存储计时器
-    this.lableMarker = {}; // 路径标注（标记台风名称）
-    this.stormCircle = {}; // 台风风圈
-    this.timeLineQueue = []; // 时间轴队列
-    this.timeLineSpeed = 1000; // 默认1000ms
+    this.hasSearchTyphoonData = {}; 
+    this.currentId = null; 
+    this.featureLayers = {}; 
+    this.forecastLayers = {}; 
+    this.timeId = {}; 
+    this.lableMarker = {};
+    this.stormCircle = {}; 
+    this.timeLineQueue = []; 
+    this.timeLineSpeed = 1000;
   }
 
-  componentDidMount() {
-    //把地理位置信息设置渲染到页面
+  componentDidMount() {   
     this.map = L.map("map").setView(position, 5);
     L.esri
       .tiledMapLayer({
@@ -139,8 +137,6 @@ export default class Home extends React.Component {
     });
     this.handleYearChange(this.state.yearsList[0].value);
     this.lysGrp = L.layerGroup();
-
-    // timeline start,百度的比如：地图，图表(echarts)可以用id
     const container = document.getElementById("timeline");
     
     // create a Timeline
@@ -148,9 +144,9 @@ export default class Home extends React.Component {
   }
   /**
  * 全选事件处理函数
- * @param {Boolean} selected 是否选中
- * @param {Array} selectedRows 已选择的行
- * @param {Array} changeRows 改变的行
+ * @param {Boolean} selected 
+ * @param {Array} selectedRows 
+ * @param {Array} changeRows 
  */
   handleSelectAll(selected, selectedRows, changeRows) {
     const selectedRowKeys = selectedRows.map((ele, index) => {
@@ -162,16 +158,15 @@ export default class Home extends React.Component {
     this.setState({ selectedRowKeys });
   }
   /**
-   * 时间轴  当前时间  和  台风数据时间  对比
+   * 时间轴当前时间和台风数据时间对比
    * @param {Number} time 时间戳
-   * async ：es7的异步函数
+   * 
    */
   async compareTyphoonWithTime(time) {
-    // 台风数据（年）
-    const { typhoonList } = this.state;
-    // 浅拷贝 台风数据 并 反转
-    const compData = typhoonList.slice().reverse();
    
+    const { typhoonList } = this.state;
+    // 浅拷贝台风数据并反转
+    const compData = typhoonList.slice().reverse();   
     for (let i = 0; i < compData.length; i++) {
       let ele = compData[i];
       // 时间戳对比
@@ -218,8 +213,7 @@ export default class Home extends React.Component {
         //满足该条件的项的index
       });
       
-      if (index !== -1) {
-        // 此段代码和renderPolylineAndMarkerWithAction中代码可复用，暂不做复用
+      if (index !== -1) {     
         if (_this.featureLayers[id]) {
           _this.reRenderForecastData(data[index], id);
           const feaLys = _this.featureLayers[id];
@@ -299,9 +293,7 @@ export default class Home extends React.Component {
         ).getTime();
         if (nextStartTime >= currentEndTime) {
           lastTime = nextStartTime;
-          break;
-          // window.timeline.moveTo(currentTime, {animation: false})
-          // window.timeline.setCurrentTime(currentTime)
+          break;        
         } else {
           nextIndexValue--;
         }
@@ -543,7 +535,6 @@ export default class Home extends React.Component {
    * @param {boolean} selected 是否选中
    * @param {array} selectedRows 已选择的行
    */
-  //——————————————————————————————————————————————————————台风事件处理函数
   handleSelectTyphoon(record, selected, selectedRows) {
     if (selected) {
       const { id, name_cn } = record;
@@ -675,7 +666,6 @@ export default class Home extends React.Component {
     }
   }
 
-  // ------------------------------------------------------------------------------------------------------
   render() {
     const {
       rectRight,
