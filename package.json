@@ -1,18 +1,16 @@
 {
-  "name": "webpack-demo",
-  "version": "1.0.0",
+  "name": "typhoon_System",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "webpack --progress",
-    "build": "webpack --env.production --env.platform=web --config webpack.config.js",
-     
+    "build": "webpack --env.production --env.platform=web --config webpack.config.js",     
     "dev": "webpack-dev-server --progress --watch --env.development --env.platform=web",
-
     "generdll": "webpack --config webpack.dll.js",
     "info": "webpack --env.production --env.platform=web --config webpack.config.js --display-modules --sort-modules-by size"
   },
-  "author": "KUICHU",
+  "author": "mencius",
   "license": "ISC",
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.0.1",
