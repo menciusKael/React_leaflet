@@ -243,7 +243,6 @@ module.exports = function (env) {
       port,
       host,
       allowedHosts,
-    // 取消host列表安全检查，开发环境启用，默认关闭，开启则allowedHosts无效
     // disableHostCheck: true,
       noInfo: true,
       overlay: true,
